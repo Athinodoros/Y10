@@ -5,17 +5,19 @@
  */
 package y10;
 
+import battleship.interfaces.BattleshipsPlayer;
+import tournament.player.PlayerFactory;
+
 /**
  *
  * @author Athinodwros
  */
 public class Y10 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    public static PlayerFactory<BattleshipsPlayer> getPlayerFactory(){
+        // TODO code application logic here7
+        return new  Y10Factory();        
+    }    
+    
     
 }
