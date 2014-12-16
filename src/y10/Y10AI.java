@@ -15,6 +15,9 @@ import battleship.interfaces.Position;
  * @author Athinodwros
  */
 public class Y10AI implements BattleshipsPlayer{
+    Position currentPosition;
+    ShootingStrategies str= new ShootingPatern1();
+    
 
     @Override
     public void startMatch(int rounds) {
@@ -38,14 +41,20 @@ public class Y10AI implements BattleshipsPlayer{
 
     @Override
     public Position getFireCoordinates(Fleet enemyShips) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.currentPosition=str.getNextPosition();  
+      return currentPosition;
     }
 
     @Override
     public void hitFeedBack(boolean hit, Fleet enemyShips) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (hit) {
+            Position bullsEye = currentPosition;
+            killWounded(bullsEye);
+        }
     }
-
+    public Position killWounded(Position bullsEye){
+        return currentPosition;
+    }
     @Override
     public void endRound(int round, int points, int enemyPoints) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
