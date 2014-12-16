@@ -14,9 +14,7 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-/dist/
-/build/
-/nbproject/private/
+
 
 # =========================
 # Operating System Files
