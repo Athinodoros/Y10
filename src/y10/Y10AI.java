@@ -9,6 +9,7 @@ import battleship.interfaces.BattleshipsPlayer;
 import battleship.interfaces.Board;
 import battleship.interfaces.Fleet;
 import battleship.interfaces.Position;
+import battleship.interfaces.Ship;
 import java.util.HashMap;
 
 /**
@@ -60,6 +61,21 @@ public class Y10AI implements BattleshipsPlayer {
 //    myStrMap.put(1,new ShootingPatern1());
 //    myStrMap.put(2,new ShootingPatern2());
 //    myStrMap.put(3,new ShootingPatern3());
+        shotMatrix = newMatrix();
+    }
+
+    public boolean[][] newMatrix() {
+        boolean[][] newMatrix = {{false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false}};
+        return newMatrix;
     }
 
     @Override
@@ -69,11 +85,12 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public void startRound(int round) {
+        shotMatrix = newMatrix();
         dataTrackerIn = 0;
         if (round < 40) {
-
+            str = myStrMap.get(1);
         } else {
-            //str = myStrMap.get(chooseStrategy());//all my strategies stay alive in this map and i can swap without losing any info
+            str = myStrMap.get(chooseStrategy());//all my strategies stay alive in this map and i can swap without losing any info
         }
     }
 
@@ -90,7 +107,15 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public void placeShips(Fleet fleet, Board board) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 10; i++) {
+            board.placeShip(new Position(i, i), new Ship() {
+
+                @Override
+                public int size() {
+                    return 2; //To change body of generated methods, choose Tools | Templates.
+                }
+            }, false);
+        }
     }
 
     @Override
@@ -103,7 +128,10 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public Position getFireCoordinates(Fleet enemyShips) {
-        this.currentPosition = str.getNextPosition();
+        do {
+            this.currentPosition = str.getNextPosition();
+        } while (shotMatrix[currentPosition.x][currentPosition.y] = false);
+        shotMatrix[currentPosition.x][currentPosition.y] = true;
         return currentPosition;
     }
 
@@ -117,7 +145,7 @@ public class Y10AI implements BattleshipsPlayer {
     }
 
     public Position killWounded(Position bullsEye) {
-            //find and kill the rest of the ship...
+        //find and kill the rest of the ship...
         //don't shoot more than needed
         //change the board that keeps track of my shooting
         //update the board with the enemies favorite spots
@@ -146,7 +174,7 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public void endMatch(int won, int lost, int draw) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Won :  "+ won +"\n Lost :  "+ lost +" Draw :  "+ draw);
     }
 
 }
