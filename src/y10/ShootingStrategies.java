@@ -22,6 +22,10 @@ public interface ShootingStrategies {
    public int getX();
    public int getY();
    public Position getNextPosition();
+   public int getStrategiesCode();
+   public int getProbability();
+   public void setProbability(int Prob);
+   public void resetLists();
    
    
 }
