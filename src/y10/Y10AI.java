@@ -107,15 +107,12 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public void placeShips(Fleet fleet, Board board) {
-        for (int i = 0; i < 10; i++) {
-            board.placeShip(new Position(i, i), new Ship() {
-
-                @Override
-                public int size() {
-                    return 2; //To change body of generated methods, choose Tools | Templates.
-                }
-            }, false);
-        }
+        //
+        //
+        //          ships are placed
+        //
+        //
+        
     }
 
     @Override
