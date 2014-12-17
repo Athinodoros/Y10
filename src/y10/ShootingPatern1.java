@@ -23,6 +23,7 @@ public class ShootingPatern1 implements ShootingStrategies {
     ArrayList<Position> list2 = new ArrayList<>();
     ArrayList<Position> list3 = new ArrayList<>();
     ArrayList<Position> list4 = new ArrayList<>();
+    ArrayList<Position> list5 = new ArrayList<>();
 
     public ShootingPatern1() {
         //list1
@@ -88,6 +89,23 @@ public class ShootingPatern1 implements ShootingStrategies {
         list4.add(new Position(7, 3));
         list4.add(new Position(7, 5));
         list4.add(new Position(8, 4));
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                list5.add(new Position(i, j));
+            }
+        }
+        for (Position list11 : list1) {
+            list5.remove(list11);
+        }
+        for (Position list11 : list2) {
+            list5.remove(list11);
+        }
+        for (Position list11 : list3) {
+            list5.remove(list11);
+        }
+        for (Position list11 : list4) {
+            list5.remove(list11);
+        }
     }
 
     @Override
@@ -128,7 +146,8 @@ public class ShootingPatern1 implements ShootingStrategies {
             int tempLiItem = r.nextInt(list4.size());
             temp = list4.remove(tempLiItem);
         } else {
-            temp = new Position(r.nextInt(10), r.nextInt(10));
+            int tempLiItem = r.nextInt(list5.size());
+            temp = list5.remove(tempLiItem);
         }
         return temp;
     }

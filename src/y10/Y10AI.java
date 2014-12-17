@@ -112,7 +112,7 @@ public class Y10AI implements BattleshipsPlayer {
         //          ships are placed
         //
         //
-        
+
     }
 
     @Override
@@ -171,7 +171,13 @@ public class Y10AI implements BattleshipsPlayer {
 
     @Override
     public void endMatch(int won, int lost, int draw) {
-        System.out.println("Won :  "+ won +"\n Lost :  "+ lost +" Draw :  "+ draw);
+        System.out.println("Won :  " + won + "\n Lost :  " + lost + " Draw :  " + draw);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(shotMatrix[i][j]+" , ");
+            }
+                System.out.println("");
+        }
     }
 
 }
